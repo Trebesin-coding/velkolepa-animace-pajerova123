@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animace formulí</title>
+
+    <style>
+        body {
+            background-color: rgb(3, 3, 147);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .obdelnik {
+            position: relative;
+            width: 800px;
+            height: 300px;
+            background: linear-gradient(180deg, #000000, #1a1a1a);
+            border: 2px solid white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(0,0,0,0.6);
+            cursor: pointer;
+        }
+
+        .textStart {
+            position: absolute;
+            bottom: 15px;
+            left: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .textCil {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            animation: blikani 1.5s ease-in-out infinite;
+        }
+
+        .formule1 {
+            position: absolute;
+            width: 140px;
+            bottom: 60px;
+            left: 30px;
+            animation: jizda 4s linear forwards;
+            transition: transform 0.3s ease;
+            animation-delay: 0s;
+        }
+        .formule1:hover {
+            transform: scale(1.18);
+        }
+
+        .formule2 {
+            position: absolute;
+            width: 140px;
+            bottom: 120px;
+            left: 30px;
+            animation: jizda 4s linear forwards;
+            transition: transform 0.3s ease;
+            animation-delay: 0.5s;
+        }
+        .formule2:hover {
+            transform: scale(1.18);
+        }
+
+        .formule3 {
+            position: absolute;
+            width: 140px;
+            bottom: 180px;
+            left: 30px;
+            animation: jizda 4s linear forwards;
+            transition: transform 0.3s ease;
+            animation-delay: 1s;
+        }
+        .formule3:hover {
+            transform: scale(1.18);
+        }
+
+        @keyframes jizda {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(600px);
+            }
+        }
+
+        @keyframes blikani {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .obdelnik.rychle .formule1,
+        .obdelnik.rychle .formule2,
+        .obdelnik.rychle .formule3 {
+            animation-duration: 1.5s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="obdelnik" id="obdelnik">
+        
+        <div class="textStart">START</div>
+        <div class="textCil">CÍL</div>
+
+        <img class="formule1" src="formule1.png" alt="">
+        <img class="formule2" src="formule2.png" alt="">
+        <img class="formule3" src="formule3.png" alt="">
+
+    </div>
+
+    <script>
+        const obdelnik = document.getElementById("obdelnik");
+
+        obdelnik.addEventListener("click", () => {
+            obdelnik.classList.toggle("rychle");
+        });
+    </script>
+
+</body>
+</html>
